@@ -1,9 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainerBase.schema.json",
-  "postCreateCommand": [
-    "pip install ruff", 
-    "npm install -g @anthropic-ai/claude-code"
-  ],
+  "postCreateCommand": {
+    "installRuff": "pip install ruff",
+    "installClaudeCode": "npm install -g @anthropic-ai/claude-code"
+  },
   "customizations": {
     "vscode": {
       "extensions": [
