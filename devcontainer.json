@@ -1,5 +1,8 @@
 {
-  "postCreateCommand": "pip install ruff",
+  "postCreateCommand": [
+    "pip install ruff", 
+    "npm install -g @anthropic-ai/claude-code"
+  ],
   "customizations": {
     "vscode": {
       "extensions": [
