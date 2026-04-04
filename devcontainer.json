@@ -1,0 +1,16 @@
+{
+  "postCreateCommand": "pip install ruff",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "charliermarsh.ruff"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff"
+        }
+      }
+    }
+  }
+}
