@@ -16,9 +16,7 @@ class CommandAutoSuggest(AutoSuggest):
         self.prompts = prompts
         self.prompt_dict = {prompt.name: prompt for prompt in prompts}
 
-    def get_suggestion(
-        self, buffer: Buffer, document: Document
-    ) -> Optional[Suggestion]:
+    def get_suggestion(self, buffer: Buffer, document: Document) -> Optional[Suggestion]:
         text = document.text
 
         if not text.startswith("/"):
@@ -99,9 +97,7 @@ class UnifiedCompleter(Completer):
                 doc_prefix = parts[-1]
 
                 for resource in self.resources:
-                    if "id" in resource and resource["id"].lower().startswith(
-                        doc_prefix.lower()
-                    ):
+                    if "id" in resource and resource["id"].lower().startswith(doc_prefix.lower()):
                         yield Completion(
                             resource["id"],
                             start_position=-len(doc_prefix),
@@ -152,11 +148,7 @@ class CliApp:
                     buffer.start_completion(select_first=False)
                 elif len(parts) == 2:
                     arg = parts[1]
-                    if (
-                        "doc" in arg.lower()
-                        or "file" in arg.lower()
-                        or "id" in arg.lower()
-                    ):
+                    if "doc" in arg.lower() or "file" in arg.lower() or "id" in arg.lower():
                         buffer.start_completion(select_first=False)
 
         self.history = InMemoryHistory()

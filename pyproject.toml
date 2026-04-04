@@ -10,3 +10,11 @@ dependencies = [
     "prompt-toolkit>=3.0.51",
     "python-dotenv>=1.1.0",
 ]
+
+[tool.ruff]
+line-length = 130
+
+[tool.ruff.lint]
+# E501 = line too long (ruff handles it by default based on the line-length)
+select = ["E", "F", "W"]   # flake8-compatible rules
+ignore = []

@@ -25,29 +25,21 @@ class MCPClient:
             args=self._args,
             env=self._env,
         )
-        stdio_transport = await self._exit_stack.enter_async_context(
-            stdio_client(server_params)
-        )
+        stdio_transport = await self._exit_stack.enter_async_context(stdio_client(server_params))
         _stdio, _write = stdio_transport
-        self._session = await self._exit_stack.enter_async_context(
-            ClientSession(_stdio, _write)
-        )
+        self._session = await self._exit_stack.enter_async_context(ClientSession(_stdio, _write))
         await self._session.initialize()
 
     def session(self) -> ClientSession:
         if self._session is None:
-            raise ConnectionError(
-                "Client session not initialized or cache not populated. Call connect_to_server first."
-            )
+            raise ConnectionError("Client session not initialized or cache not populated. Call connect_to_server first.")
         return self._session
 
     async def list_tools(self) -> list[types.Tool]:
         # TODO: Return a list of tools defined by the MCP server
         return []
 
-    async def call_tool(
-        self, tool_name: str, tool_input: dict
-    ) -> types.CallToolResult | None:
+    async def call_tool(self, tool_name: str, tool_input: dict) -> types.CallToolResult | None:
         # TODO: Call a particular tool and return the result
         return None
 

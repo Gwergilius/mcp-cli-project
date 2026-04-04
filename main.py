@@ -18,9 +18,7 @@ anthropic_api_key = os.getenv("ANTHROPIC_API_KEY", "")
 
 
 assert claude_model, "Error: CLAUDE_MODEL cannot be empty. Update .env"
-assert anthropic_api_key, (
-    "Error: ANTHROPIC_API_KEY cannot be empty. Update .env"
-)
+assert anthropic_api_key, "Error: ANTHROPIC_API_KEY cannot be empty. Update .env"
 
 
 async def main():
@@ -29,23 +27,15 @@ async def main():
     server_scripts = sys.argv[1:]
     clients = {}
 
-    command, args = (
-        ("uv", ["run", "mcp_server.py"])
-        if os.getenv("USE_UV", "0") == "1"
-        else ("python", ["mcp_server.py"])
-    )
+    command, args = ("uv", ["run", "mcp_server.py"]) if os.getenv("USE_UV", "0") == "1" else ("python", ["mcp_server.py"])
 
     async with AsyncExitStack() as stack:
-        doc_client = await stack.enter_async_context(
-            MCPClient(command=command, args=args)
-        )
+        doc_client = await stack.enter_async_context(MCPClient(command=command, args=args))
         clients["doc_client"] = doc_client
 
         for i, server_script in enumerate(server_scripts):
             client_id = f"client_{i}_{server_script}"
-            client = await stack.enter_async_context(
-                MCPClient(command="uv", args=["run", server_script])
-            )
+            client = await stack.enter_async_context(MCPClient(command="uv", args=["run", server_script]))
             clients[client_id] = client
 
         chat = CliChat(
