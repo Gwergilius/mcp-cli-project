@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainerBase.schema.json",
   "postCreateCommand": [
     "pip install ruff", 
     "npm install -g @anthropic-ai/claude-code"
@@ -6,7 +7,8 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "charliermarsh.ruff"
+        "charliermarsh.ruff",
+        "anthropic-ai.claude-code"
       ],
       "settings": {
         "editor.formatOnSave": true,
