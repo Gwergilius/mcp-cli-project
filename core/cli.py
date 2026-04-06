@@ -189,6 +189,7 @@ class CliApp:
             print(f"Error refreshing prompts: {e}")
 
     async def run(self):
+        print("Type /exit or /quit to exit the program.")
         while True:
             try:
                 user_input = await self.session.prompt_async("> ")
@@ -198,5 +199,5 @@ class CliApp:
                 response = await self.agent.run(user_input)
                 print(f"\nResponse:\n{response}")
 
-            except KeyboardInterrupt:
+            except (KeyboardInterrupt, EOFError):
                 break
