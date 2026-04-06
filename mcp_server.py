@@ -66,7 +66,7 @@ def edit_document(
     return updated_doc
 
 
-@mcp.resource(uri="docs:/documents", mime_type="application/json", description="A list of document IDs available in the system.")
+@mcp.resource(uri="docs://documents", mime_type="application/json", description="A list of document IDs available in the system.")
 def list_documents() -> list[str]:
     """Lists all document IDs available in the system.
 
@@ -77,7 +77,7 @@ def list_documents() -> list[str]:
 
 
 # TODO: Write a resource to return the contents of a particular doc
-@mcp.resource(uri="docs:/documents/{doc_id}", mime_type="text/plain", description="The contents of a particular document.")
+@mcp.resource(uri="docs://documents/{doc_id}", mime_type="text/plain", description="The contents of a particular document.")
 def get_document(doc_id: str) -> str:
     """Gets the contents of a particular document.
 
